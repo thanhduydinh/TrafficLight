@@ -29,7 +29,7 @@ const axiosTenant = axios.create({
 
 // Add a request interceptor
 axiosTenant.interceptors.request.use(
-  function (config) {
+  (config) => {
     const { token } = useAuthStore.getState();
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -37,17 +37,19 @@ axiosTenant.interceptors.request.use(
 
     return config;
   },
-  function (error) {
+  (error) => {
     return Promise.reject(error);
   }
 );
+
 // Add a response interceptor
 axiosTenant.interceptors.response.use(
-  function (response: AxiosResponse) {
+  (response: AxiosResponse) => {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
     return response;
   },
+
   async function (error) {
     const { config } = error;
     const originalRequest = config;
@@ -55,11 +57,12 @@ axiosTenant.interceptors.response.use(
       refreshToken: oldRefreshToken,
       token: oldAccessToken,
       setNewToken,
+      logout,
     } = useAuthStore.getState();
 
     if (error.response?.status === 401) {
       if (!oldRefreshToken) {
-        useAuthStore.getState().logout();
+        logout();
         return Promise.reject(error);
       }
 
@@ -82,6 +85,7 @@ axiosTenant.interceptors.response.use(
             token: accessToken,
             refreshToken,
           });
+
           if (originalRequest.headers) {
             originalRequest.headers.authorization = `Bearer ${accessToken}`;
             // set new token
@@ -90,16 +94,16 @@ axiosTenant.interceptors.response.use(
             return axios(originalRequest);
           }
         } catch (error) {
-          useAuthStore.getState().logout();
+          logout();
           return Promise.reject(error);
         } finally {
           isRefreshing = false;
         }
       }
 
+      // Call back previously denied APIs
       return new Promise((resolve) => {
         subscribeTokenRefresh((newToken: string) => {
-          // replace the expired token and retry
           if (originalRequest.headers) {
             originalRequest.headers.authorization = `Bearer ${newToken}`;
           }
