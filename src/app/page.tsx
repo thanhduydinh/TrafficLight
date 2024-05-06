@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <main
-      className={cn(
+      className={classNames(
         "flex min-h-screen flex-col items-center justify-between",
         todo?.length > 0 && "p-24"
       )}
