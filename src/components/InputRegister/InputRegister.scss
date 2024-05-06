@@ -1,0 +1,40 @@
+.inputregister {
+  width: 470px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  margin: 20px 20px;
+  font-size: 0.9rem;
+
+  input {
+    height: 100%;
+    border-radius: 10px 0px 0px 10px;
+    background: #FFF;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+    padding-left: 16px;
+    &::placeholder {
+      color: #b9b9b9;
+      font-family: Kanit;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+    }
+  }
+
+  button {
+    color: #fff;
+    font-family: Kanit;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    display: flex;
+    padding: 10px 35px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0px 10px 10px 0px;
+    background-color: #b4916c;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.05);
+  }
+}
