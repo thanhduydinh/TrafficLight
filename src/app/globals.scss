@@ -1,14 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-// :root {
-
-// }
-
 body {
   padding: 0;
   box-sizing: border-box;
+}
+* {
+  border: none;
 }
 
 @layer utilities {
@@ -16,3 +11,7 @@ body {
     text-wrap: balance;
   }
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
