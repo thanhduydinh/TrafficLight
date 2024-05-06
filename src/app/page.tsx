@@ -31,27 +31,18 @@ export default function Home() {
 
   return (
     <main
-      className={classNames(
+      className={cn(
         "flex min-h-screen flex-col items-center justify-between",
         todo?.length > 0 && "p-24"
       )}
     >
       <Count2 />
-      <AllRoundedButton
-        onClick={handleClick}
-        label="dcmdasdasdsawdaswd"
-        icon={<i className="fa fa-fan"></i>}
-        variant="outlined"
-        size="md"
-        capitalizing="uppercase"
-        borderRadius="sm"
-      />
-      {/* <SubscribeButton
-        onClick={() => {
-          handleClick();
-        }}
-        label="Subscribe"
-      /> */}
+      TODOs
+      <div>
+        {todo?.map((d: any) => (
+          <p key={d.id}>{d.title}</p>
+        ))}
+      </div>
     </main>
   );
 }
