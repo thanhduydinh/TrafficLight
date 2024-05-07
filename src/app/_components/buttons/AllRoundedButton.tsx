@@ -5,6 +5,7 @@ interface AllRoundedButtonProps {
   content: string;
   icon: React.ReactNode;
   variant?: "primary" | "outlined";
+  width?: number;
 }
 
 const AllRoundedButton: React.FC<AllRoundedButtonProps> = ({
@@ -12,15 +13,17 @@ const AllRoundedButton: React.FC<AllRoundedButtonProps> = ({
   content,
   icon,
   variant = "primary",
+  width,
 }) => {
   const buttonStyles =
     variant === "outlined"
-      ? "bg-transparent border border-solid border-[#B4916C] text-[#B4916C] font-medium hover:bg-[#B4916C] hover:text-white"
-      : "bg-[#B4916C] text-white font-medium hover:bg-[#FFFFFF] hover:text-[#B4916C] hover:border hover:border-solid hover:border-[#B4916C]";
+      ? "h-12 bg-transparent border border-solid border-[#B4916C] text-[#B4916C] font-medium hover:bg-[#B4916C] hover:text-white"
+      : "h-12 bg-[#B4916C] text-white font-medium hover:bg-[#FFFFFF] hover:text-[#B4916C] hover:border hover:border-solid hover:border-[#B4916C]";
 
+  const widthClass = width ? `w-[${width}px]` : "";
   return (
     <button
-      className={`${buttonStyles} ${
+      className={`${buttonStyles} ${widthClass} ${
         icon
           ? "flex gap-2 items-center content-center"
           : "items-center content-center"

@@ -37,6 +37,14 @@ export default function Home() {
       )}
     >
       <Count2 />
+      <AllRoundedButton
+        variant="primary"
+        content="baodang"
+        onClick={() => {
+          console.log("baodang");
+        }}
+        width={40}
+      />
       TODOs
       <div>
         {todo?.map((d: any) => (
