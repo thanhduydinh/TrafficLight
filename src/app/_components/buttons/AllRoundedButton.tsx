@@ -17,10 +17,10 @@ const AllRoundedButton: React.FC<AllRoundedButtonProps> = ({
 }) => {
   const buttonStyles =
     variant === "outlined"
-      ? "h-12 bg-transparent border border-solid border-[#B4916C] text-[#B4916C] font-medium hover:bg-[#B4916C] hover:text-white"
-      : "h-12 bg-[#B4916C] text-white font-medium hover:bg-[#FFFFFF] hover:text-[#B4916C] hover:border hover:border-solid hover:border-[#B4916C]";
+      ? "h-12 bg-transparent border border-solid border-primary text-primary font-medium hover:bg-primary hover:text-white"
+      : "h-12 bg-primary text-white font-medium hover:bg-white hover:text-primary hover:border hover:border-solid hover:border-primary";
 
-  const widthClass = width ? `w-[${width}px]` : "";
+  const widthClass = width ? `w-${width}` : "";
   return (
     <button
       className={`${buttonStyles} ${widthClass} ${
