@@ -4,9 +4,8 @@ import axios from "axios";
 import Count2 from "./_components/Count";
 import AllRoundedButton from "./_components/buttons/AllRoundedButton";
 import RoundedRightButton from "./_components/buttons/RoundedRightButton";
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import classNames from "classnames";
 import { useEffect, useState } from "react";
+import { cn } from "@/config/utils";
 
 export default function Home() {
   const handleClick = () => {
@@ -31,7 +30,7 @@ export default function Home() {
 
   return (
     <main
-      className={classNames(
+      className={cn(
         "flex min-h-screen flex-col items-center justify-between",
         todo?.length > 0 && "p-24"
       )}
