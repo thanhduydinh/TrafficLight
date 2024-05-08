@@ -2,15 +2,11 @@
 
 import axios from "axios";
 import Count2 from "./_components/Count";
-import AllRoundedButton from "./_components/buttons/AllRoundedButton";
-import RoundedRightButton from "./_components/buttons/RoundedRightButton";
+import Button from "./_components/buttons/Button";
 import { useEffect, useState } from "react";
 import { cn } from "@/config/utils";
 
 export default function Home() {
-  const handleClick = () => {
-    console.log("button clicked!");
-  };
   const [todo, setTodo] = useState<any[]>([]);
 
   useEffect(() => {
@@ -36,13 +32,14 @@ export default function Home() {
       )}
     >
       <Count2 />
-      <AllRoundedButton
+      <Button
         variant="primary"
         content="baodang"
         onClick={() => {
           console.log("baodang");
         }}
-        width={40}
+        disabled={false}
+        className="rounded-lg w-40"
       />
       TODOs
       <div>

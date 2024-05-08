@@ -1,33 +1,39 @@
 import React from "react";
+import { cn } from "@/config/utils";
 
-interface AllRoundedButtonProps {
+interface ButtonProps {
   onClick: () => void;
+  className?: string;
   content: string;
   icon: React.ReactNode;
   variant?: "primary" | "outlined";
-  width?: number;
+  disabled?: boolean;
 }
 
-const AllRoundedButton: React.FC<AllRoundedButtonProps> = ({
+const Button: React.FC<ButtonProps> = ({
   onClick,
+  className,
   content,
   icon,
   variant = "primary",
-  width,
+  disabled = false,
 }) => {
   const buttonStyles =
     variant === "outlined"
       ? "h-12 bg-transparent border border-solid border-primary text-primary font-medium hover:bg-primary hover:text-white"
       : "h-12 bg-primary text-white font-medium hover:bg-white hover:text-primary hover:border hover:border-solid hover:border-primary";
 
-  const widthClass = width ? `w-${width}` : "";
   return (
     <button
-      className={`${buttonStyles} ${widthClass} ${
-        icon
-          ? "flex gap-2 items-center content-center"
-          : "items-center content-center"
-      }`}
+      className={cn(
+        `${buttonStyles} ${
+          icon
+            ? "flex gap-2 items-center content-center"
+            : "items-center content-center"
+        }`,
+        disabled && "bg-gray-500 pointer-events-none",
+        className,
+      )}
       onClick={onClick}
     >
       {icon && <span>{icon}</span>}
@@ -36,4 +42,4 @@ const AllRoundedButton: React.FC<AllRoundedButtonProps> = ({
   );
 };
 
-export default AllRoundedButton;
+export default Button;
