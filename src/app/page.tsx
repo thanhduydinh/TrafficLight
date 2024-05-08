@@ -1,25 +1,23 @@
-import { cn } from "../config/utils";
-import { getTodos } from "../services";
-import Count2 from "./_components/Count";
+"use client";
 
-export default async function Home() {
-  const todo = await getTodos();
-  console.log("data: ", todo);
+import axios from "axios";
+import Button from "../components/ui/Button";
+import { useEffect, useState } from "react";
+import { cn } from "@/config/utils";
+import { CartPlus } from "@/assets/icons/CartPlus";
 
+export default function Home() {
   return (
-    <main
-      className={cn(
-        "flex min-h-screen flex-col items-center justify-between",
-        todo?.length > 0 && "p-24"
-      )}
-    >
-      <Count2 />
-      TODOs
-      <div>
-        {todo?.map((d: any) => (
-          <p key={d.id}>{d.title}</p>
-        ))}
-      </div>
+    <main className={cn("p-10")}>
+      <Button
+        variant="outlined"
+        onClick={() => {
+          console.log("baodang");
+        }}
+        className="w-40"
+      >
+        <CartPlus /> Click me
+      </Button>
     </main>
   );
 }
