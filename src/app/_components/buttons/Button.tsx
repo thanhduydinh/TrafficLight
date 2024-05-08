@@ -31,7 +31,7 @@ const Button: React.FC<ButtonProps> = ({
             ? "flex gap-2 items-center content-center"
             : "items-center content-center"
         }`,
-        disabled && "bg-gray-500 pointer-events-none",
+        disabled && "bg-red-900 pointer-events-none",
         className,
       )}
       onClick={onClick}
