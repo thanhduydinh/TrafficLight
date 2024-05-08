@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import Button from "./_components/buttons/Button";
+import Button from "../components/ui/Button";
 import { useEffect, useState } from "react";
 import { cn } from "@/config/utils";
 import { CartPlus } from "@/assets/icons/CartPlus";
