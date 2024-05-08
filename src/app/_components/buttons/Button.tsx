@@ -5,7 +5,7 @@ interface ButtonProps {
   onClick: () => void;
   className?: string;
   content: string;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   variant?: "primary" | "outlined";
   disabled?: boolean;
 }
