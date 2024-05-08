@@ -1,45 +1,40 @@
-import React from "react";
+import { ButtonHTMLAttributes, forwardRef } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/config/utils";
 
-interface ButtonProps {
-  onClick: () => void;
-  className?: string;
-  content: string;
-  icon: React.ReactNode;
-  variant?: "primary" | "outlined";
-  disabled?: boolean;
+const buttonVariants = cva(
+  "inline-flex items-center justify-center h-12 font-medium rounded-[5px] gap-2 focus:outline-none transition disabled:pointer-events-none disabled:opacity-70",
+  {
+    variants: {
+      variant: {
+        primary: "bg-primary text-white hover:bg-primary/90",
+        outlined:
+          "bg-white border border-solid border-primary text-primary hover:bg-primary hover:text-white",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+    },
+  }
+);
+
+interface ButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  // additional props here if needed...
 }
 
-const Button: React.FC<ButtonProps> = ({
-  onClick,
-  className,
-  content,
-  icon,
-  variant = "primary",
-  disabled = false,
-}) => {
-  const buttonStyles =
-    variant === "outlined"
-      ? "h-12 bg-transparent border border-solid border-primary text-primary font-medium hover:bg-primary hover:text-white"
-      : "h-12 bg-primary text-white font-medium hover:bg-white hover:text-primary hover:border hover:border-solid hover:border-primary";
-
-  return (
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, children, variant = "primary", ...props }, ref) => (
     <button
-      className={cn(
-        `${buttonStyles} ${
-          icon
-            ? "flex gap-2 items-center content-center"
-            : "items-center content-center"
-        }`,
-        disabled && "bg-red-900 pointer-events-none",
-        className,
-      )}
-      onClick={onClick}
+      ref={ref}
+      type="button"
+      className={cn(buttonVariants({ variant, className }))}
+      {...props}
     >
-      {icon && <span>{icon}</span>}
-      {content}
+      {children}
     </button>
-  );
-};
+  )
+);
 
 export default Button;
