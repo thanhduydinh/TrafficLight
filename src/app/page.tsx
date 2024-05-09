@@ -1,52 +1,48 @@
-"use client"
+"use client";
 
-import { cn } from "../config/utils";
-import { getTodos } from "../services";
-import Count2 from "./_components/Count";
-import { InputSearch } from "@/components/InputSearch/InputSearch";
-import InputRegister from "@/components/InputRegister/InputRegister";
-import InputTextArea from "@/components/InputTextArea/InputTextArea";
-import Input from "@/components/Input/Input";
-import { useState } from "react";
+import axios from "axios";
+import Button from "../components/ui/Button";
+import { useEffect, useState } from "react";
+import { cn } from "@/config/utils";
+import { CartPlus } from "@/assets/icons/CartPlus";
+import { Search } from "@/assets/icons/Search";
+import Input from "@/components/ui/Input";
+
 export default function Home() {
-  const [searchValue, setSearchValue] = useState("");
-  const [inforShip,setInforShip] = useState({
-    name: "",
-    phone: "",
-    addressdetail: "",
-    note: ""
-  })
-
-  const handleSearchChange = (value: string) => {
-    setSearchValue(value);
-  };
-  
-  const handleRegister = (value: string) => {
-    console.log(value)
-  }
-
-  const handleChangeInforShip = (value: { name: string, value: string }) => {
-    setInforShip({...inforShip,[value.name]: value.value})
-  }
-
   return (
-    <main>
-      <InputSearch
-        name="search"
+    <main className={cn("px-10")}>
+      {/* <Button
+        variant="outlined"
+        onClick={() => {
+          console.log("baodang");
+        }}
+        className="w-40"
+      >
+        <CartPlus /> Click me
+      </Button> */}
+      <Input
+        label="Phong"
         type="text"
         placeholder="Tìm kiếm sản phẩm"
-        className="input"
+        className="w-full border-b-[1px] py-[5px] flex items-center border-b-[#B4916C]"
+        onChange={(value: string) => {
+          console.log(value);
+        }}
         disabled={false}
-        value={searchValue}
-        onChange={handleSearchChange}
-      />
-      
-      <InputRegister onClickRegister={handleRegister}/>
+      >
+        <Search />
+      </Input>
 
-      <Input name="name" placeholder="Họ tên" errorMessage={`Vui lòng nhập họ tên của bạn`} onChange={handleChangeInforShip}/>
-      <Input name="phone" placeholder="Số điện thoại" errorMessage={`Vui lòng nhập số điện thoại của bạn`} onChange={handleChangeInforShip}/>
-      <Input name="address" placeholder="Địa chỉ chi tiết" errorMessage={`Vui lòng nhập địa chỉ chi tiết của bạn`} onChange={handleChangeInforShip}/>
-      <InputTextArea name="note" placeholder="Ghi chú" onChange={handleChangeInforShip}/>
+      <Input
+        type="text"
+        placeholder="Họ tên"
+        className="border border-[#666666] px-[20px] py-[10px] rounded-[10px]"
+        onChange={(value: string) => {
+          console.log(value);
+        }}
+        error="Lỗi"
+        disabled={false}
+      />
     </main>
   );
 }

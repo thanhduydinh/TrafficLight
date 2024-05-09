@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { immer } from 'zustand/middleware/immer';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
 
 interface IUserInfo {
   name: string;
@@ -17,13 +17,13 @@ interface IAuth {
 
 const initialState: IAuth = {
   userInfo: null,
-  token: '',
-  refreshToken: '',
+  token: "",
+  refreshToken: "",
 };
 
 interface IAuthAction {
   login: (auth: IAuth) => void;
-  setNewToken: (auth: Omit<IAuth, 'userInfo'>) => void;
+  setNewToken: (auth: Omit<IAuth, "userInfo">) => void;
   logout: () => void;
 }
 
@@ -31,13 +31,16 @@ export const useAuthStore = create<IAuth & IAuthAction>()(
   persist(
     immer((set) => ({
       ...initialState,
-      login: ({ userInfo, token, refreshToken }) =>
-        set({ userInfo, token, refreshToken }),
-      setNewToken: ({ token, refreshToken }) => set({ token, refreshToken }),
+      login: ({ userInfo, token, refreshToken }) => {
+        set({ userInfo, token, refreshToken });
+      },
+      setNewToken: ({ token, refreshToken }) => {
+        set({ token, refreshToken });
+      },
       logout: () => set(initialState),
     })),
     {
-      name: 'auth',
+      name: "auth",
     }
   )
 );
