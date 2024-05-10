@@ -25,8 +25,9 @@ const config: Config = {
         700: "#383838",
         600: "#444444",
         500: "#626262",
-        400: "#B9B9B9",
-        300: "#D3CDC7",
+        400: "#939CAB",
+        300: "#B9B9B9",
+        200: "#D3CDC7",
       },
       white: {
         DEFAULT: "#FFFFFF",
@@ -54,6 +55,18 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
+      keyframes: {
+        fadeInDown: {
+          "0%": {
+            top: "50%",
+            opacity: "0",
+          },
+          "100%": {
+            top: "100%",
+            opacity: "1",
+          },
+        },
       },
     },
   },
