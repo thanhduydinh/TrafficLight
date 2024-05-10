@@ -102,7 +102,12 @@ export default function UIKits() {
       />
 
       <h1>Pagination</h1>
-      <Pagination total={200} pageSize={10} onChange={onPaginationChange} />
+      <Pagination
+        total={200}
+        currentPageProp={1}
+        pageSize={10}
+        onChange={onPaginationChange}
+      />
     </main>
   );
 }

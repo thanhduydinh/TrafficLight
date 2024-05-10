@@ -1,13 +1,12 @@
-
-import { useState } from 'react';
-import PaginationItem from './PaginationItem';
+import { useState } from "react";
+import PaginationItem from "./PaginationItem";
 
 function calculatePage(
   pageSize: number,
   total: number,
   newPageSize: number | undefined
 ) {
-  const _pageSize = typeof newPageSize === 'undefined' ? pageSize : newPageSize;
+  const _pageSize = typeof newPageSize === "undefined" ? pageSize : newPageSize;
   return Math.floor((total - 1) / _pageSize) + 1;
 }
 export interface PaginationProps {
@@ -42,9 +41,9 @@ export default function Pagination(props: PaginationProps) {
       <PaginationItem
         page={currentPage - 1}
         onClick={changePage}
-        keyProp='pre'
+        keyProp="pre"
         isDisabled={currentPage === 1}
-        content='<'
+        content="<"
       />
     );
     if (leftSide) {
@@ -52,22 +51,21 @@ export default function Pagination(props: PaginationProps) {
         <PaginationItem
           page={1}
           onClick={changePage}
-          keyProp='first'
-          content='1'
+          keyProp="first"
+          content="1"
         />
       );
       data.push(
         <PaginationItem.Ellipsis
           onClick={changePage}
-          keyProp='leftEllipsis'
-          content='...'
+          keyProp="leftEllipsis"
+          content="..."
         />
       );
     }
     const str = Math.max(1, Math.round(currentPage - numPage / 2));
     const end = Math.min(totalPages, Math.round(currentPage + numPage / 2));
     for (let i = str; i <= end; i++) {
-      console.log('i : ', i);
       data.push(
         <PaginationItem
           page={i}
@@ -82,15 +80,15 @@ export default function Pagination(props: PaginationProps) {
       data.push(
         <PaginationItem.Ellipsis
           onClick={changePage}
-          keyProp='rightEllipsis'
-          content='...'
+          keyProp="rightEllipsis"
+          content="..."
         />
       );
       data.push(
         <PaginationItem
           page={totalPages}
           onClick={changePage}
-          keyProp='last'
+          keyProp="last"
           content={totalPages.toString()}
         />
       );
@@ -99,13 +97,13 @@ export default function Pagination(props: PaginationProps) {
       <PaginationItem
         page={currentPage + 1}
         onClick={changePage}
-        keyProp='next'
-        content='>'
+        keyProp="next"
+        content=">"
         isDisabled={currentPage === totalPages}
       />
     );
     return data;
   };
 
-  return <ul className='p-0 list-none'>{showPageItemsFunction()}</ul>;
+  return <ul className="p-0 list-none">{showPageItemsFunction()}</ul>;
 }
