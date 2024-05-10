@@ -1,9 +1,11 @@
+"use client";
+
 import { ButtonHTMLAttributes, forwardRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/config/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center h-12 font-medium rounded-[5px] gap-2 focus:outline-none transition disabled:pointer-events-none disabled:opacity-70",
+  "inline-flex px-2 items-center justify-center h-12 font-medium rounded-[5px] gap-2 focus:outline-none transition disabled:pointer-events-none disabled:opacity-70",
   {
     variants: {
       variant: {
