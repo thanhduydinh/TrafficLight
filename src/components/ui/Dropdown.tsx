@@ -2,6 +2,7 @@
 
 import { ChevronDown } from "@/assets/icons/ChevronDown";
 import { cn } from "@/config/utils";
+import useClickOutside from "@/hooks/useClickOutside";
 import { useState, useEffect, useRef } from "react";
 
 interface DropdownItem {
@@ -38,6 +39,8 @@ const Dropdown = ({
   const [selectedItem, setSelectedItem] = useState<DropdownItem | null>(null);
   const mainValue = value !== undefined ? value : selectedItem;
 
+  useClickOutside([dropdownRef, inputRef], () => setIsOpen(false));
+
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   const handleSelectItem = (item: DropdownItem) => {
@@ -46,28 +49,12 @@ const Dropdown = ({
     onChange?.(item);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        !dropdownRef.current?.contains(event.target as Node) &&
-        !inputRef.current?.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   return (
-    <div className={cn("relative h-fit")}>
+    <div className={cn("relative w-fit h-fit")}>
       <div
         ref={inputRef}
         className={cn(
-          "flex justify-between w-fit text-base border-2 select-none border-dark-300 cursor-pointer text-dark",
+          "flex justify-between text-base border-2 select-none border-dark-300 cursor-pointer text-dark",
           {
             "px-2 py-0.5 rounded": size === "sm",
             "px-3.5 py-2.5 rounded-xl": size === "lg",
@@ -85,7 +72,7 @@ const Dropdown = ({
       <div
         ref={dropdownRef}
         className={cn(
-          "absolute max-h-60 overflow-auto w-fit py-1 z-10 mt-2 mb-4 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 cursor-pointer focus:outline-none animate-[fadeInDown_0.2s]",
+          "absolute max-h-60 overflow-auto w-full py-1 z-10 mt-2 mb-4 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 cursor-pointer focus:outline-none animate-[fadeInDown_0.2s]",
           isOpen ? "block" : "hidden"
         )}
       >
