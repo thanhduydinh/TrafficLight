@@ -20,7 +20,7 @@ export default function UIKits() {
   };
 
   return (
-    <main className={cn("m-10 space-y-4")}>
+    <main className={cn("mx-10 mt-10 mb-20 space-y-4")}>
       <h1>Buttons</h1>
       <div className="space-x-2">
         <Button
