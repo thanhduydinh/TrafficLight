@@ -56,6 +56,18 @@ const config: Config = {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },
+      keyframes: {
+        fadeInDown: {
+          "0%": {
+            top: "50%",
+            opacity: "0",
+          },
+          "100%": {
+            top: "100%",
+            opacity: "1",
+          },
+        },
+      },
     },
   },
   plugins: [],
