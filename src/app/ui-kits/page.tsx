@@ -66,18 +66,24 @@ export default function UIKits() {
           { value: "HB", label: "Hòa Bình" },
           { value: "PT", label: "Phú Thọ" },
           { value: "CB", label: "Cao Bằng" },
+          { value: "LS", label: "Lạng Sơn" },
+          { value: "DB", label: "Điện Biên" },
+          { value: "TH", label: "Thanh Hóa" },
         ]}
       />
       <Dropdown
         size="lg"
         onChange={(value, item) => console.log(value, item)}
-        // disabled
+        disabled
         placeholder="Chọn tỉnh / thành"
         className="w-60"
         options={[
           { value: "HN", label: "Hà Nội" },
           { value: "HD", label: "Hải Dương" },
           { value: "HP", label: "Hải Phòng" },
+          { value: "HB", label: "Hòa Bình" },
+          { value: "PT", label: "Phú Thọ" },
+          { value: "CB", label: "Cao Bằng" },
         ]}
       />
       <Dropdown

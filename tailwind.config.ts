@@ -68,6 +68,16 @@ const config: Config = {
             opacity: "1",
           },
         },
+        fadeInUp: {
+          "0%": {
+            bottom: "50%",
+            opacity: "0",
+          },
+          "100%": {
+            bottom: "100%",
+            opacity: "1",
+          },
+        },
       },
     },
   },

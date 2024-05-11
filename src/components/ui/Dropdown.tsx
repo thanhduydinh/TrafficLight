@@ -35,8 +35,18 @@ const Dropdown = ({
   const [selectedValue, setSelectedValue] = useState<StringOrNumber | null>(
     defaultValue
   );
+  const [isDropdownTop, setIsDropdownTop] = useState(false);
   useClickOutside(dropdownRef, () => setIsOpen(false));
-  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const toggleDropdown = () => {
+    const dropdownEl = dropdownRef.current;
+    if (dropdownEl && !isOpen) {
+      const rect = dropdownEl.getBoundingClientRect();
+      setIsDropdownTop(window.innerHeight - rect.bottom < 300);
+    }
+
+    setIsOpen(!isOpen);
+  };
 
   const handleSelectItem = (item: DropdownItem) => {
     toggleDropdown();
@@ -56,7 +66,7 @@ const Dropdown = ({
           {
             "px-2 py-0.5 rounded": size === "sm",
             "px-3.5 py-2.5 rounded-xl": size === "lg",
-            "text-dark-400": selectedValue === null,
+            "text-dark-400 font-light": !selectedValue,
             "opacity-75 pointer-events-none": disabled,
           },
           className
@@ -69,8 +79,11 @@ const Dropdown = ({
 
       <div
         className={cn(
-          "absolute max-h-60 w-full py-1 z-10 mt-2 mb-4 origin-top-right rounded-md bg-white shadow-lg border border-dark-300 cursor-pointer animate-[fadeInDown_0.2s] scrollbarStyle",
-          isOpen ? "block" : "hidden"
+          "absolute max-h-[300px] w-full py-1 z-10 mt-2 rounded-md bg-white shadow-lg border border-dark-300 cursor-pointer scrollbarStyle",
+          isOpen ? "block" : "hidden",
+          isDropdownTop
+            ? "bottom-full mb-2 animate-[fadeInUp_0.2s]"
+            : "top-full mt-2 animate-[fadeInDown_0.2s]"
         )}
       >
         {options.map((item) => (
@@ -78,7 +91,7 @@ const Dropdown = ({
             key={item.value}
             onClick={() => handleSelectItem(item)}
             className={cn(
-              "text-dark select-none",
+              "text-dark",
               item.value === selectedValue
                 ? "bg-white-200 font-medium"
                 : "hover:bg-white-200",
