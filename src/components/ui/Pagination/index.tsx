@@ -8,7 +8,7 @@ export interface PaginationProps {
   currentPageProp?: number;
 }
 export default function Pagination(props: PaginationProps) {
-  const { total = 100, pageSize = 10, onChange, currentPageProp } = props;
+  const { total, pageSize, onChange, currentPageProp } = props;
   const [currentPage, setCurrentPage] = useState<number>(currentPageProp || 1);
 
   const totalPages = Math.ceil(total / pageSize);
@@ -46,16 +46,17 @@ export default function Pagination(props: PaginationProps) {
         <PaginationItem page={1} onClick={changePage} key="first" content="1" />
       );
       data.push(
-        <PaginationItem.Ellipsis
-          onClick={changePage}
+        <PaginationItem
+          onClick={() => changePage(currentPage - numPage)}
           key="leftEllipsis"
           content="..."
+          variant={"ellipsis"}
         />
       );
     }
-    const str = Math.max(1, Math.round(currentPage - numPage / 2));
+    const start = Math.max(1, Math.round(currentPage - numPage / 2));
     const end = Math.min(totalPages, Math.round(currentPage + numPage / 2));
-    for (let i = str; i <= end; i++) {
+    for (let i = start; i <= end; i++) {
       data.push(
         <PaginationItem
           page={i}
@@ -68,10 +69,11 @@ export default function Pagination(props: PaginationProps) {
     }
     if (rightSide) {
       data.push(
-        <PaginationItem.Ellipsis
-          onClick={changePage}
+        <PaginationItem
+          onClick={() => changePage(currentPage + numPage)}
           key="rightEllipsis"
           content="..."
+          variant={"ellipsis"}
         />
       );
       data.push(
