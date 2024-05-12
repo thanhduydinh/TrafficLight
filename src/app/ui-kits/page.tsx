@@ -9,10 +9,7 @@ import Dropdown from "@/components/ui/Dropdown";
 import { useState } from "react";
 
 export default function UIKits() {
-  const [selectedItem, setSelectedItem] = useState<{
-    label: string;
-    value: string;
-  } | null>(null);
+  const [selectedItem, setSelectedItem] = useState<string | number>("");
 
   return (
     <main className={cn("mx-10 mt-10 mb-20 space-y-4")}>
@@ -58,17 +55,25 @@ export default function UIKits() {
       <h1>Dropdown</h1>
       <Dropdown
         size="lg"
-        value={selectedItem}
-        onChange={(selectedItem) => setSelectedItem(selectedItem)}
+        className="w-60"
+        defaultValue="HN"
+        onChange={(value) => setSelectedItem(value)}
         placeholder="Chọn tỉnh / thành"
         options={[
           { value: "HN", label: "Hà Nội" },
           { value: "HD", label: "Hải Dương" },
           { value: "HP", label: "Hải Phòng" },
+          { value: "HB", label: "Hòa Bình" },
+          { value: "PT", label: "Phú Thọ" },
+          { value: "CB", label: "Cao Bằng" },
+          { value: "LS", label: "Lạng Sơn" },
+          { value: "DB", label: "Điện Biên" },
+          { value: "TH", label: "Thanh Hóa" },
         ]}
       />
       <Dropdown
         size="lg"
+        onChange={(value, item) => console.log(value, item)}
         disabled
         placeholder="Chọn tỉnh / thành"
         className="w-60"
@@ -76,6 +81,9 @@ export default function UIKits() {
           { value: "HN", label: "Hà Nội" },
           { value: "HD", label: "Hải Dương" },
           { value: "HP", label: "Hải Phòng" },
+          { value: "HB", label: "Hòa Bình" },
+          { value: "PT", label: "Phú Thọ" },
+          { value: "CB", label: "Cao Bằng" },
         ]}
       />
       <Dropdown
