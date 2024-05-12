@@ -2,19 +2,22 @@
 
 import { ReactNode } from "react"
 
-interface Props{
-    children: ReactNode;
-    title: String;
+interface Props {
+  children: ReactNode;
+  subTitle: String;
+  mainTitle: String;
 }
 
-export default function AuthLayout(props: Props){
-  const {children, title} = props;
+export default function AuthLayout(props: Props) {
+  const { children, subTitle, mainTitle } = props;
 
-  return(
-    <div className="sm:w-[400px] shadow-2xl mx-auto pb-[20px] rounded-lg">
-        <div className="text-[#223263] font-bold text-center pt-[10px]">{"Welcome to E-com"}</div>
-        <div className="text-[#9098B1] text-[15px] text-center my-[13px]">{title}</div>
+  return (
+    <div className="w-screen h-screen flex justify-center items-center">
+      <div className="w-full sm:w-[430px] shadow-2xl pb-3 rounded-lg">
+        <div className="text-dark-850 text-xl font-bold text-center pt-3">{mainTitle}</div>
+        <div className="text-dark-200 text-xm text-center my-2">{subTitle}</div>
         {children}
+      </div>  
     </div>
   )
 }
