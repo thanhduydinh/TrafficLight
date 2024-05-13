@@ -9,7 +9,10 @@ import Dropdown from "@/components/ui/Dropdown";
 import { useState } from "react";
 
 export default function UIKits() {
-  const [selectedItem, setSelectedItem] = useState<string | number>("");
+  const [selectedItem, setSelectedItem] = useState<{
+    label: string;
+    value: string | number;
+  } | null>(null);
 
   return (
     <main className={cn("mx-10 mt-10 mb-20 space-y-4")}>
@@ -56,7 +59,8 @@ export default function UIKits() {
       <Dropdown
         size="lg"
         className="w-60"
-        defaultValue="HN"
+        searchEnabled
+        value={selectedItem}
         onChange={(value) => setSelectedItem(value)}
         placeholder="Chọn tỉnh / thành"
         options={[
@@ -73,7 +77,6 @@ export default function UIKits() {
       />
       <Dropdown
         size="lg"
-        onChange={(value, item) => console.log(value, item)}
         disabled
         placeholder="Chọn tỉnh / thành"
         className="w-60"
