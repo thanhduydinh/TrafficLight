@@ -17,6 +17,7 @@ const config: Config = {
         350: "#FAB55A",
         300: "#FFC961",
         200: "#F3C796",
+        100: "#EFEBE8",
       },
       dark: {
         DEFAULT: "#242424",
@@ -79,6 +80,13 @@ const config: Config = {
           },
         },
       },
+    },
+    screens: {
+      xs: "380px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
     },
   },
   plugins: [],
