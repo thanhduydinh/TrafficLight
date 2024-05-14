@@ -85,7 +85,7 @@ const Dropdown = ({
     <div className={cn("relative w-fit h-fit")} ref={dropdownRef}>
       <div
         className={cn(
-          "flex items-center text-base select-none cursor-pointer border border-dark-300 hover:border-primary",
+          "flex items-center select-none cursor-pointer border border-dark-300 hover:border-primary",
           {
             "px-2 py-0.5 rounded": size === "sm",
             "px-3.5 py-2.5 rounded-xl": size === "lg",
