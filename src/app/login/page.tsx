@@ -85,7 +85,7 @@ export default function Login() {
           </span>
         </Button>
 
-        <Link href={PATH.FORGETPASSWORD}>
+        <Link href={PATH.FORGET_PASSWORD}>
           <span className="text-xs text-primary-900 font-bold mt-2">Quên mật khẩu?</span>
         </Link>
 

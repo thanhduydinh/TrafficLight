@@ -2,6 +2,6 @@ export const PATH = {
     HOME: "/",
     DASHBOARD: "/dashboard",
     LOGIN: "/login",
-    FORGETPASSWORD: "/forget-password",
+    FORGET_PASSWORD: "/forget-password",
     REGISTER: "/register"
 }
