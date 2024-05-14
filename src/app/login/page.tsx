@@ -1,6 +1,7 @@
 "use client";
 
 import { ChangeEvent, useState } from "react";
+import Link from "next/link";
 import { cn } from "@/config/utils";
 import AuthLayout from "@/components/ui/AuthLayout";
 import Input from "@/components/ui/Input";
@@ -8,6 +9,7 @@ import { Eye } from "@/assets/icons/Eye";
 import { EyeInvisible } from "@/assets/icons/EyeInvisible";
 import { Google } from "@/assets/icons/Google";
 import Button from "@/components/ui/Button";
+import { PATH } from "@/constants/paths";
 
 export default function Login() {
   const [isShowPassword, setIsShowPassword] = useState(false);
@@ -83,14 +85,15 @@ export default function Login() {
           </span>
         </Button>
 
-        <a href="/" className="text-xs text-primary-900 font-bold mt-2">
-          Quên mật khẩu?
-        </a>
+        <Link href={PATH.FORGETPASSWORD}>
+          <span className="text-xs text-primary-900 font-bold mt-2">Quên mật khẩu?</span>
+        </Link>
+
         <span className="text-xs text-dark-400 mt-2">
           {`Bạn chưa có tài khoản? `}
-          <a href="/" className="text-primary-900 font-bold">
-            Đăng kí ngay
-          </a>
+          <Link href={PATH.REGISTER}>
+            <span className="text-primary-900 font-bold">Đăng kí ngay</span>
+          </Link>
         </span>
 
       </div>
