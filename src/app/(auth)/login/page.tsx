@@ -2,8 +2,8 @@
 
 import { ChangeEvent, useState } from "react";
 import Link from "next/link";
-import { cn } from "@/config/utils";
 import AuthLayout from "@/components/ui/AuthLayout";
+import { cn } from "@/config/utils";
 import Input from "@/components/ui/Input";
 import { Eye } from "@/assets/icons/Eye";
 import { EyeInvisible } from "@/assets/icons/EyeInvisible";
@@ -25,7 +25,7 @@ export default function Login() {
 
   return (
     <AuthLayout mainTitle="Welcome to E-com" subTitle="Đăng nhập">
-      <div className="w-[90%] mx-auto flex flex-col gap-3">
+      <div className="mx-auto flex flex-col gap-3">
         <Input
           label="Email"
           type="text"
@@ -55,7 +55,7 @@ export default function Login() {
         />
       </div>
 
-      <div className=" w-[90%] flex items-center mx-auto my-2">
+      <div className="flex items-center mx-auto my-2">
         <div className={cn(
           'inline-block pointer-events-auto h-6 w-10 rounded-full p-1 ring-1 ring-inset transition duration-200 ease-in-out ring-black/20 hover:cursor-pointer',
           { 'bg-primary-900': isRememberAccount, 'bg-[white]': !isRememberAccount }
@@ -68,7 +68,7 @@ export default function Login() {
         <span className={cn("text-sm ml-2", { 'text-primary-900': isRememberAccount, 'text-dark-400': !isRememberAccount })}>Lưu đăng nhập</span>
       </div>
 
-      <div className=" w-[90%] text-center mt-5 mx-auto flex flex-col">
+      <div className="text-center mt-5 mx-auto flex flex-col">
         <Button>
           <span>Đăng nhập</span>
         </Button>
@@ -85,14 +85,14 @@ export default function Login() {
           </span>
         </Button>
 
-        <Link href={PATH.FORGET_PASSWORD}>
-          <span className="text-xs text-primary-900 font-bold mt-2">Quên mật khẩu?</span>
+        <Link href={PATH.FORGET_PASSWORD} className="text-xs text-primary-900 font-bold mt-2">
+          Quên mật khẩu?
         </Link>
 
         <span className="text-xs text-dark-400 mt-2">
-          {`Bạn chưa có tài khoản? `}
-          <Link href={PATH.REGISTER}>
-            <span className="text-primary-900 font-bold">Đăng kí ngay</span>
+          Bạn chưa có tài khoản?
+          <Link href={PATH.REGISTER} className="text-primary-900 font-bold">
+            Đăng kí ngay
           </Link>
         </span>
 

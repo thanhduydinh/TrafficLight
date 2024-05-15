@@ -13,7 +13,7 @@ export default function AuthLayout(props: Props) {
 
   return (
     <div className="w-screen h-screen flex justify-center items-center">
-      <div className="w-full sm:w-[430px] shadow-2xl pb-5 pt-5 rounded-lg">
+      <div className="w-full sm:w-[430px] shadow-2xl p-5 rounded-lg">
         <div className="text-dark-850 text-xl font-bold text-center">{mainTitle}</div>
         <div className="text-dark-200 text-xm text-center my-2">{subTitle}</div>
         {children}
