@@ -11,9 +11,11 @@ import Pagination from "@/components/ui/Pagination";
 
 export default function UIKits() {
   const [selectedItem, setSelectedItem] = useState<string | number>("");
+  const [page,setPage] = useState(1);
 
   const onPaginationChange = (currentPage: number) => {
     console.log(currentPage);
+    setPage(currentPage)
   };
 
   return (
@@ -121,10 +123,11 @@ export default function UIKits() {
       <h1>Pagination</h1>
       <Pagination
         total={200}
-        currentPageProp={1}
+        currentPage={page}
         pageSize={10}
-        onChange={onPaginationChange}
+        onPageChange={onPaginationChange}
       />
+
     </main>
   );
 }
