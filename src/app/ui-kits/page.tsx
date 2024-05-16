@@ -7,9 +7,16 @@ import { cn } from "@/config/utils";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import { useState } from "react";
+import Pagination from "@/components/ui/Pagination";
 
 export default function UIKits() {
   const [selectedItem, setSelectedItem] = useState<string | number>("");
+  const [page,setPage] = useState(1);
+
+  const onPaginationChange = (currentPage: number) => {
+    console.log(currentPage);
+    setPage(currentPage)
+  };
 
   return (
     <main className={cn("mx-10 mt-10 mb-20 space-y-4")}>
@@ -112,6 +119,15 @@ export default function UIKits() {
           { value: "gd", label: "Giày dép" },
         ]}
       />
+
+      <h1>Pagination</h1>
+      <Pagination
+        total={200}
+        currentPage={page}
+        pageSize={10}
+        onPageChange={onPaginationChange}
+      />
+
     </main>
   );
 }
