@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/config/utils";
 
 const inputVariants = cva(
-  "w-full py-3 text-sm text-dark-850 placeholder-dark-400 outline-none disabled:pointer-events-none disabled:cursor-none disabled:opacity-70",
+  "w-full py-3 text-dark-850 placeholder-dark-400 outline-none disabled:pointer-events-none disabled:cursor-none disabled:opacity-70",
   {
     variants: {
       variant: {
@@ -34,7 +34,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, className, error, icon, variant = "outlined", ...props }, ref) => {
     return (
       <div>
-        {label && <label className="block text-sm mb-1">{label}</label>}
+        {label && <label className="block mb-1">{label}</label>}
         <div className="w-full relative">
           <input
             className={cn(inputVariants({ variant, className }))}
@@ -50,7 +50,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             {icon}
           </div>
         </div>
-        {error && <p className="text-red mt-1 text-sm">{error}</p>}
+        {error && <p className="text-red mt-1">{error}</p>}
       </div>
     );
   }
