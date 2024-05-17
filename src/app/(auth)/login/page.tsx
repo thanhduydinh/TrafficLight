@@ -2,7 +2,6 @@
 
 import { ChangeEvent, useState } from "react";
 import Link from "next/link";
-import AuthLayout from "@/components/ui/AuthLayout";
 import { cn } from "@/config/utils";
 import Input from "@/components/ui/Input";
 import { Eye } from "@/assets/icons/Eye";
@@ -24,7 +23,12 @@ export default function Login() {
   };
 
   return (
-    <AuthLayout mainTitle="Welcome to E-com" subTitle="Đăng nhập">
+    <>
+      <div className="text-dark-850 text-xl font-bold text-center">
+        Welcome to E-com
+      </div>
+      <div className="text-dark-200 text-xm text-center my-2">Đăng nhập</div>
+
       <div className="mx-auto flex flex-col gap-3">
         <Input
           label="Email"
@@ -95,8 +99,7 @@ export default function Login() {
             Đăng kí ngay
           </Link>
         </span>
-
       </div>
-    </AuthLayout>
+    </>
   );
 }
