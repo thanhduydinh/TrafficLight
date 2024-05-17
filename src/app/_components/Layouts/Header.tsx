@@ -14,11 +14,7 @@ import {
   RoundedUser,
 } from "@/assets/icons/";
 
-interface HeaderProps {
-  numberOfOrders?: number;
-}
-
-const Header: React.FC<HeaderProps> = ({ numberOfOrders }) => {
+const Header: React.FC<> = () => {
   const [isFluentListOpen, setIsFluentListOpen] = useState(false);
   const headerDetailList = [
     {
@@ -124,13 +120,6 @@ const Header: React.FC<HeaderProps> = ({ numberOfOrders }) => {
                 <CartShopping />
                 <span className="inline-block text-primary-900">Giỏ hàng</span>
               </Link>
-              {numberOfOrders && (
-                <div className="number_of_orders absolute size-3 top-[-5px] left-8 bg-red rounded-full text-white content-center">
-                  <span className="absolute text-black text-xs left-[3px] top-[-2px] content-center">
-                    {numberOfOrders}
-                  </span>
-                </div>
-              )}
             </div>
           </div>
         </nav>
@@ -150,13 +139,6 @@ const Header: React.FC<HeaderProps> = ({ numberOfOrders }) => {
           <Link className="flex flex-col items-center" href="#">
             <CartShopping />
           </Link>
-          {numberOfOrders && (
-            <div className="number_of_orders absolute size-3 top-[-5px] left-8 bg-red rounded-full text-white content-center">
-              <span className="absolute text-black text-xs left-[3px] top-[-2px] content-center">
-                {numberOfOrders}
-              </span>
-            </div>
-          )}
           <RoundedUser />
         </div>
       </div>
