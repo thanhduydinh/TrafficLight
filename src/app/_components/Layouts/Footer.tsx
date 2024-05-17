@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
               <Input
                 type="text"
                 placeholder="Enter your email"
-                className="w-59 border-none h-12 rounded-r-none rounded-l-xl xs:w-80 transition-width duration-500"
+                className="w-59 border-none h-12 rounded-r-none rounded-l-xl md:w-80 transition-width duration-500"
               />
               <Button className="h-12 rounded-r-xl rounded-l-none md:w-40 text-sm xs:w-28 transition-width duration-500">
                 ĐĂNG KÝ
