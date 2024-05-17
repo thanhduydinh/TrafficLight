@@ -11,6 +11,7 @@ type PaginationProps = {
   currentPage?: number;
   onPageChange: (page: number) => void;
   className?: string;
+  numberPage?: number;
 };
 
 const classArrow =
@@ -23,11 +24,18 @@ const Pagination: FC<PaginationProps> = ({
   currentPage = 1,
   onPageChange,
   className,
+  numberPage,
 }) => {
   const [width] = useWindowSize();
   const { totalPages, pages } = useMemo(
-    () => getPageInfo(total, currentPage, pageSize, width < MD ? 3 : PAGINATION_SIZE),
-    [total, currentPage, pageSize, width]
+    () =>
+      getPageInfo(
+        total,
+        currentPage,
+        pageSize,
+        numberPage || width < MD ? 3 : PAGINATION_SIZE
+      ),
+    [total, currentPage, pageSize, numberPage, width]
   );
 
   const isDisableButtonLeft = currentPage <= 1;
@@ -46,7 +54,7 @@ const Pagination: FC<PaginationProps> = ({
           {pages.map((number, index) => (
             <Fragment key={index}>
               {number === -1 ? (
-                <span className="mx-1">. . .</span>
+                <span className="mx-1 text-base">. . .</span>
               ) : (
                 <Button
                   variant={number === currentPage ? "primary" : "outlined"}
@@ -141,8 +149,6 @@ const getPageInfo = (
 
   return {
     totalPages,
-    startPage,
-    endPage,
     pages,
   };
 };
