@@ -3,22 +3,23 @@ import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 import { Facebook, Instagram, Twitter } from "@/assets/icons";
 import Link from "next/link";
-const Footer: React.FC = () => {
-  const aboutCategories = [
-    { name: "Trang chủ", link: "#" },
-    { name: "Sản phẩm", link: "#" },
-    { name: "Tin tức", link: "#" },
-    { name: "Voucher", link: "#" },
-    { name: "Combo giảm giá", link: "#" },
-  ];
 
-  const customerSupportCategories = [
-    { name: "Điều khoản - Điều kiện", link: "#" },
-    { name: "Chính sách đổi trả", link: "#" },
-    { name: "Chính sách hỗ trợ", link: "#" },
-    { name: "Chính sách bảo mật", link: "#" },
-  ];
+const aboutCategories = [
+  { name: "Trang chủ", link: "#" },
+  { name: "Sản phẩm", link: "#" },
+  { name: "Tin tức", link: "#" },
+  { name: "Voucher", link: "#" },
+  { name: "Combo giảm giá", link: "#" },
+];
 
+const customerSupportCategories = [
+  { name: "Điều khoản - Điều kiện", link: "#" },
+  { name: "Chính sách đổi trả", link: "#" },
+  { name: "Chính sách hỗ trợ", link: "#" },
+  { name: "Chính sách bảo mật", link: "#" },
+];
+
+const Footer = () => {
   return (
     <footer className="bg-primary-100">
       <div className="py-5 xs:px-5">

@@ -13,8 +13,9 @@ import {
   FluentList,
   RoundedUser,
 } from "@/assets/icons/";
+import useWindowResize from "../hooks/useWindowSize";
 
-const Header: React.FC<> = () => {
+const Header = () => {
   const [isFluentListOpen, setIsFluentListOpen] = useState(false);
   const headerDetailList = [
     {
@@ -40,18 +41,11 @@ const Header: React.FC<> = () => {
     },
   ];
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1280) {
-        setIsFluentListOpen(false);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  useWindowResize(() => {
+    if (window.innerWidth >= 1280) {
+      setIsFluentListOpen(false);
+    }
+  });
 
   const handleFluentListOpen = () => {
     setIsFluentListOpen(!isFluentListOpen);
