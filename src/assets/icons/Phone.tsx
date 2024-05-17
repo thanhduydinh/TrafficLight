@@ -1,6 +1,6 @@
 import { SVGAttributes } from "react";
 
-export function Phone(props: SVGAttributes<SVGSVGElement>) {
+export default function Phone(props: SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

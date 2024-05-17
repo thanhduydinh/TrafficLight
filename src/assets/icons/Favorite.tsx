@@ -1,6 +1,6 @@
 import { SVGAttributes } from "react";
 
-export function Favorite(props: SVGAttributes<SVGSVGElement>) {
+export default function Favorite(props: SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       width="24"

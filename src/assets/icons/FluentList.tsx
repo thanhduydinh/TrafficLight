@@ -1,6 +1,6 @@
 import { SVGAttributes } from "react";
 
-export function FluentList(props: SVGAttributes<SVGSVGElement>) {
+export default function FluentList(props: SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       width="20"

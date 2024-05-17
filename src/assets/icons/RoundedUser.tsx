@@ -1,6 +1,6 @@
 import { SVGAttributes } from "react";
 
-export function RoundedUser(props: SVGAttributes<SVGSVGElement>) {
+export default function RoundedUser(props: SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       width="24"

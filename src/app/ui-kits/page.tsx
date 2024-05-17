@@ -1,7 +1,7 @@
 "use client";
 
-import { CartPlus } from "@/assets/icons/CartPlus";
-import { Search } from "@/assets/icons/Search";
+import  CartPlus  from "@/assets/icons/CartPlus";
+import  Search  from "@/assets/icons/Search";
 import Input from "@/components/ui/Input";
 import { cn } from "@/config/utils";
 import Button from "@/components/ui/Button";

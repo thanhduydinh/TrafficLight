@@ -1,6 +1,6 @@
 import { SVGAttributes } from "react";
 
-export function Twitter(props: SVGAttributes<SVGSVGElement>) {
+export default function Twitter(props: SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
