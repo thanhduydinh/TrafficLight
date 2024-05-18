@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown } from "@/assets/icons/ChevronDown";
+import { ChevronDown } from "@/assets/icons/Icon";
 import { cn } from "@/config/utils";
 import useClickOutside from "@/hooks/useClickOutside";
 import { useState, useRef, useMemo } from "react";

@@ -2,34 +2,37 @@
 
 import { useState } from "react";
 import { cn } from "@/config/utils";
-import { Cart } from "@/assets/icons/Cart";
-import { Heart } from "@/assets/icons/Heart";
+import { Cart, Heart } from "@/assets/icons/Icon";
 import RatingStar from "./RatingStar";
 import Image from "next/image";
 
 type ItemcardProps = {
-  img?: string;
-  content?: string;
+  imgUrl?: string;
+  title?: string;
   currentPrice?: string;
   previousPrice?: string;
   isFavourite?: boolean;
   rating?: number;
   disabled?: boolean;
+  onClick?: () => void;
 };
 
 const Itemcard = ({
-  img,
-  content,
+  imgUrl,
+  title,
   currentPrice,
   previousPrice,
   isFavourite,
   rating,
   disabled = false,
+  onClick,
 }: ItemcardProps) => {
   const [favorite, setFavorite] = useState(isFavourite);
   const toggleFavorite = () => {
     setFavorite(!favorite);
-    // Gọi hàm call API
+    if (onClick) {
+      onClick();
+    }
   };
 
   return (
@@ -39,10 +42,10 @@ const Itemcard = ({
       })}
     >
       <div className={cn("relative cursor-pointer")}>
-        {img && (
+        {imgUrl && (
           <Image
-            src={img}
-            alt="Picture of the author"
+            src={imgUrl}
+            alt="Item Picture"
             width={280}
             height={280}
             className={cn("w-full h-[280px] object-cover rounded-t-xl")}
@@ -55,18 +58,18 @@ const Itemcard = ({
           )}
           onClick={toggleFavorite}
         >
-          <Heart fill={favorite ? "#B4916C" : "#ccc"} />
+          <Heart currentColor={favorite ? "#B4916C" : "#ccc"} />
         </div>
       </div>
 
       <div className={cn("px-3 py-2 bg-white-100")}>
         <div className={cn("flex justify-between items-center")}>
-          <h3 className="text-base text-gray-400">{content}</h3>
+          <h3 className="w-9/12 text-base text-gray-400 line-clamp-2 text-ellipsis">{title}</h3>
           <Cart />
         </div>
 
         <div className={cn("flex justify-between items-center")}>
-          <div className={cn("flex justify-between items-center")}>
+          <div className={cn("flex items-center")}>
             <p className="text-lg text-yellow-800 font-medium mr-3">
               {currentPrice}
             </p>
