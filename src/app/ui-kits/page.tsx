@@ -7,11 +7,16 @@ import { cn } from "@/config/utils";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import { useState } from "react";
-import Header from "../_components/Layouts/Header";
-import Footer from "../_components/Layouts/Footer";
+import Pagination from "@/components/ui/Pagination";
 
 export default function UIKits() {
   const [selectedItem, setSelectedItem] = useState<string | number>("");
+  const [page,setPage] = useState(1);
+
+  const onPaginationChange = (currentPage: number) => {
+    console.log(currentPage);
+    setPage(currentPage)
+  };
 
   return (
     <>
@@ -56,59 +61,75 @@ export default function UIKits() {
         />
         <Input type="text" variant={"filled"} placeholder="Filled Input" />
 
-        <h1>Dropdown</h1>
-        <Dropdown
-          size="lg"
-          className="w-60"
-          defaultValue="HN"
-          onChange={(value) => setSelectedItem(value)}
-          placeholder="Chọn tỉnh / thành"
-          options={[
-            { value: "HN", label: "Hà Nội" },
-            { value: "HD", label: "Hải Dương" },
-            { value: "HP", label: "Hải Phòng" },
-            { value: "HB", label: "Hòa Bình" },
-            { value: "PT", label: "Phú Thọ" },
-            { value: "CB", label: "Cao Bằng" },
-            { value: "LS", label: "Lạng Sơn" },
-            { value: "DB", label: "Điện Biên" },
-            { value: "TH", label: "Thanh Hóa" },
-          ]}
-        />
-        <Dropdown
-          size="lg"
-          onChange={(value, item) => console.log(value, item)}
-          disabled
-          placeholder="Chọn tỉnh / thành"
-          className="w-60"
-          options={[
-            { value: "HN", label: "Hà Nội" },
-            { value: "HD", label: "Hải Dương" },
-            { value: "HP", label: "Hải Phòng" },
-            { value: "HB", label: "Hòa Bình" },
-            { value: "PT", label: "Phú Thọ" },
-            { value: "CB", label: "Cao Bằng" },
-          ]}
-        />
-        <Dropdown
-          size="sm"
-          placeholder="Sản phẩm"
-          options={[
-            { value: "qa", label: "Quần áo" },
-            { value: "gd", label: "Giày dép" },
-          ]}
-        />
-        <Dropdown
-          size="sm"
-          disabled
-          placeholder="Sản phẩm"
-          options={[
-            { value: "qa", label: "Quần áo" },
-            { value: "gd", label: "Giày dép" },
-          ]}
-        />
-      </main>
-      <Footer />
-    </>
+      <h1>Dropdown</h1>
+      <Dropdown
+        size="lg"
+        className="w-60"
+        searchEnabled
+        value={selectedItem}
+        onChange={setSelectedItem}
+        placeholder="Chọn tỉnh / thành"
+        options={[
+          { value: "HN", label: "Hà Nội" },
+          { value: "HD", label: "Hải Dương" },
+          { value: "HP", label: "Hải Phòng" },
+          { value: "HB", label: "Hòa Bình" },
+          { value: "PT", label: "Phú Thọ" },
+          { value: "CB", label: "Cao Bằng" },
+          { value: "LS", label: "Lạng Sơn" },
+          { value: "DB", label: "Điện Biên" },
+          { value: "TH", label: "Thanh Hóa" },
+        ]}
+      />
+      <Dropdown
+        size="lg"
+        className="w-60"
+        placeholder="Chọn tỉnh / thành"
+        options={[
+          { value: "DB2", label: "Điện Biên 2" },
+          { value: "TH2", label: "Thanh Hóa 2" },
+        ]}
+      />
+      <Dropdown
+        size="lg"
+        disabled
+        placeholder="Chọn tỉnh / thành"
+        className="w-60"
+        options={[
+          { value: "HN", label: "Hà Nội" },
+          { value: "HD", label: "Hải Dương" },
+          { value: "HP", label: "Hải Phòng" },
+          { value: "HB", label: "Hòa Bình" },
+          { value: "PT", label: "Phú Thọ" },
+          { value: "CB", label: "Cao Bằng" },
+        ]}
+      />
+      <Dropdown
+        size="sm"
+        placeholder="Sản phẩm"
+        options={[
+          { value: "qa", label: "Quần áo" },
+          { value: "gd", label: "Giày dép" },
+        ]}
+      />
+      <Dropdown
+        size="sm"
+        disabled
+        placeholder="Sản phẩm"
+        options={[
+          { value: "qa", label: "Quần áo" },
+          { value: "gd", label: "Giày dép" },
+        ]}
+      />
+
+      <h1>Pagination</h1>
+      <Pagination
+        total={200}
+        currentPage={page}
+        pageSize={10}
+        onPageChange={onPaginationChange}
+      />
+
+    </main>
   );
 }
