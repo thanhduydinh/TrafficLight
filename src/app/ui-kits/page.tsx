@@ -7,12 +7,16 @@ import { cn } from "@/config/utils";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import { useState } from "react";
+import Pagination from "@/components/ui/Pagination";
 
 export default function UIKits() {
-  const [selectedItem, setSelectedItem] = useState<{
-    label: string;
-    value: string;
-  } | null>(null);
+  const [selectedItem, setSelectedItem] = useState<string | number>("");
+  const [page,setPage] = useState(1);
+
+  const onPaginationChange = (currentPage: number) => {
+    console.log(currentPage);
+    setPage(currentPage)
+  };
 
   return (
     <main className={cn("mx-10 mt-10 mb-20 space-y-4")}>
@@ -58,13 +62,30 @@ export default function UIKits() {
       <h1>Dropdown</h1>
       <Dropdown
         size="lg"
+        className="w-60"
+        searchEnabled
         value={selectedItem}
-        onChange={(selectedItem) => setSelectedItem(selectedItem)}
+        onChange={setSelectedItem}
         placeholder="Chọn tỉnh / thành"
         options={[
           { value: "HN", label: "Hà Nội" },
           { value: "HD", label: "Hải Dương" },
           { value: "HP", label: "Hải Phòng" },
+          { value: "HB", label: "Hòa Bình" },
+          { value: "PT", label: "Phú Thọ" },
+          { value: "CB", label: "Cao Bằng" },
+          { value: "LS", label: "Lạng Sơn" },
+          { value: "DB", label: "Điện Biên" },
+          { value: "TH", label: "Thanh Hóa" },
+        ]}
+      />
+      <Dropdown
+        size="lg"
+        className="w-60"
+        placeholder="Chọn tỉnh / thành"
+        options={[
+          { value: "DB2", label: "Điện Biên 2" },
+          { value: "TH2", label: "Thanh Hóa 2" },
         ]}
       />
       <Dropdown
@@ -76,6 +97,9 @@ export default function UIKits() {
           { value: "HN", label: "Hà Nội" },
           { value: "HD", label: "Hải Dương" },
           { value: "HP", label: "Hải Phòng" },
+          { value: "HB", label: "Hòa Bình" },
+          { value: "PT", label: "Phú Thọ" },
+          { value: "CB", label: "Cao Bằng" },
         ]}
       />
       <Dropdown
@@ -95,6 +119,15 @@ export default function UIKits() {
           { value: "gd", label: "Giày dép" },
         ]}
       />
+
+      <h1>Pagination</h1>
+      <Pagination
+        total={200}
+        currentPage={page}
+        pageSize={10}
+        onPageChange={onPaginationChange}
+      />
+
     </main>
   );
 }
