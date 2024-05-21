@@ -5,90 +5,91 @@ import { cn } from "@/config/utils";
 import useClickOutside from "@/hooks/useClickOutside";
 import { useState, useRef, useMemo, useEffect } from "react";
 
-type DropdownValue = string | number;
+type DropdownValue = string | number | undefined;
 
 interface DropdownItem {
   label: string;
   value: DropdownValue;
 }
 
-type DropdownProps = {
+interface DropdownProps<T extends DropdownValue> {
   size?: "sm" | "lg";
   placeholder?: string;
   options: DropdownItem[];
   disabled?: boolean;
   className?: string;
-  defaultValue?: DropdownValue;
-  searchEnabled?: boolean;
-} & (
-  | {
-      value: DropdownValue;
-      onChange: (
-        selectedValue: DropdownValue,
-        selectedItem: DropdownItem
-      ) => void;
-    }
-  | { value?: undefined; onChange?: undefined }
-);
+  isShowSearch?: boolean;
+  value?: T;
+  onChange?: (selectedValue: T, selectedItem: DropdownItem) => void;
+  onSearchChange?: (searchValue: T) => void;
+}
 
-const Dropdown = ({
+const Dropdown = <T extends DropdownValue>({
   size = "sm",
   placeholder,
   options,
-  defaultValue = "",
   value,
   className,
   disabled = false,
+  isShowSearch = false,
   onChange,
-  searchEnabled = false,
-}: DropdownProps) => {
+  onSearchChange,
+}: DropdownProps<T>) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownTop, setIsDropdownTop] = useState(false);
-  const [selectedValue, setSelectedValue] =
-    useState<DropdownValue>(defaultValue);
+  const [selectedValue, setSelectedValue] = useState<DropdownValue>(value);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const mainValue = value !== undefined ? value : selectedValue;
+  useEffect(() => {
+    setSelectedValue(value);
+  }, [value]);
+
   const mainItem = useMemo(
-    () => options.find((option) => option.value === mainValue),
-    [options, mainValue]
+    () => options.find((option) => option.value === selectedValue),
+    [options, selectedValue]
   );
 
   useClickOutside(dropdownRef, () => setIsOpen(false));
 
-  const toggleDropdown = () => {
+  const toggleDropdown = (toggleValue?: boolean) => {
     const dropdownEl = dropdownRef.current;
     if (dropdownEl && !isOpen) {
       const rect = dropdownEl.getBoundingClientRect();
       setIsDropdownTop(window.innerHeight - rect.bottom < 300);
     }
-    setIsOpen(!isOpen);
+    setIsOpen(toggleValue === undefined ? !isOpen : toggleValue);
   };
 
   const handleSelectItem = (item: DropdownItem) => {
     toggleDropdown();
     setSelectedValue(item.value);
-    onChange?.(item.value, item);
+    onChange?.(item.value as T, item);
     setSearchTerm("");
+    onSearchChange?.("" as T);
   };
 
   const filteredOptions = useMemo(
     () =>
-      searchEnabled
+      isShowSearch
         ? options.filter((option) =>
             option.label.toLowerCase().includes(searchTerm.toLowerCase())
           )
         : options,
-    [searchTerm, options, searchEnabled]
+    [searchTerm, options, isShowSearch]
   );
 
+  const onChangeSearch = (value: string) => {
+    onSearchChange?.(value as T);
+    setSearchTerm(value);
+  };
+
   useEffect(() => {
-    if (isOpen && searchEnabled) {
+    if (isOpen && isShowSearch) {
       inputRef.current?.focus();
     }
-  }, [isOpen, searchEnabled]);
+  }, [isOpen, isShowSearch]);
 
   return (
     <div className={cn("relative w-fit h-fit")} ref={dropdownRef}>
@@ -103,21 +104,21 @@ const Dropdown = ({
           },
           className
         )}
-        onClick={toggleDropdown}
+        onClick={() => toggleDropdown(true)}
       >
         <input
           ref={inputRef}
           type="text"
           placeholder={mainItem?.label || placeholder}
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => onChangeSearch(e.target.value)}
           className={cn(
-            disabled || !searchEnabled ? "hidden" : "inline-block",
+            disabled || !isShowSearch ? "hidden" : "inline-block",
             searchTerm ? "placeholder:text-dark-400" : "placeholder:text-dark",
             "w-full border-none outline-none focus:ring-0"
           )}
         />
-        {!searchEnabled && <span>{mainItem?.label || placeholder}</span>}
+        {!isShowSearch && <span>{mainItem?.label || placeholder}</span>}
         <ChevronDown className="ml-2 my-auto" />
       </div>
 
@@ -139,7 +140,7 @@ const Dropdown = ({
                 onClick={() => handleSelectItem(item)}
                 className={cn(
                   "text-dark",
-                  item.value === mainValue
+                  item.value === selectedValue
                     ? "bg-white-200 font-medium"
                     : "hover:bg-white-200",
                   {

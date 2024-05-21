@@ -63,7 +63,7 @@ export default function UIKits() {
       <Dropdown
         size="lg"
         className="w-60"
-        searchEnabled
+        isShowSearch
         value={selectedItem}
         onChange={setSelectedItem}
         placeholder="Chọn tỉnh / thành"
