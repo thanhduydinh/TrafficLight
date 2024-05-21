@@ -10,6 +10,8 @@ import RoundedUser from "./RoundedUser";
 import Facebook from "./Facebook";
 import Instagram from "./Instagram";
 import Twitter from "./Twitter";
+import LogoFurniture from "./LogoFurniture";
+import Xmark from "./Xmark";
 
 export {
   Envelope,
@@ -24,4 +26,6 @@ export {
   Facebook,
   Instagram,
   Twitter,
+  LogoFurniture,
+  Xmark,
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Input from "@/components/ui/Input";
@@ -12,8 +12,8 @@ import {
   DownAngle,
   FluentList,
   RoundedUser,
+  LogoFurniture,
 } from "@/assets/icons/";
-import useWindowResize from "../hooks/useWindowSize";
 
 const Header = () => {
   const [isFluentListOpen, setIsFluentListOpen] = useState(false);
@@ -41,15 +41,10 @@ const Header = () => {
     },
   ];
 
-  useWindowResize(() => {
-    if (window.innerWidth >= 1280) {
-      setIsFluentListOpen(false);
-    }
-  });
-
   const handleFluentListOpen = () => {
     setIsFluentListOpen(!isFluentListOpen);
   };
+
   return (
     <header>
       <div className="bg-primary-900 text-white py-4 top-0 z-10 xl:block hidden">
@@ -81,9 +76,9 @@ const Header = () => {
 
       <div className="hidden py-2 bg-white xl:block">
         <nav className="md:w-4/5 px-3 lg:px-0 mx-auto flex justify-between items-center">
-          <h3 className="text-primary-900 font-medium text-3xl cursor-pointer">
-            Furniture
-          </h3>
+          <Link href="#">
+            <LogoFurniture />
+          </Link>
           <div className="hidden gap-5 xl:flex">
             {headerDetailList.map((item, index) => (
               <Link
@@ -102,35 +97,35 @@ const Header = () => {
             placeholder="Tìm kiếm sản phẩm"
             error=""
             icon={<Search />}
-            className="w-[300px]"
+            className="w-[200px] xxl:w-[300px]"
           />
-          <div className="flex flex-row gap-5">
+          <div className="flex gap-5">
             <Link className="flex flex-col items-center" href="#">
               <Favorite />
-              <span className="inline-block text-primary-900">Đã lưu</span>
+              <span className="text-primary-900">Đã lưu</span>
             </Link>
-            <div className="flex flex-col gap-2 items-center cursor-pointer relative">
+            <div>
               <Link className="flex flex-col items-center" href="#">
                 <CartShopping />
-                <span className="inline-block text-primary-900">Giỏ hàng</span>
+                <span className="text-primary-900">Giỏ hàng</span>
               </Link>
             </div>
           </div>
         </nav>
       </div>
 
-      <div className="mobile--header bg-white xl:hidden flex px-3 py-3 justify-between items-center">
+      <div className="bg-white xl:hidden flex px-3 py-3 justify-between items-center">
         <FluentList
           onClick={() => {
             handleFluentListOpen();
           }}
           className="cursor-pointer"
         />
-        <h3 className="text-primary-900 font-medium text-3xl cursor-pointer">
-          Furniture
-        </h3>
+        <Link href="#">
+          <LogoFurniture />
+        </Link>
         <div className="flex gap-2">
-          <Link className="flex flex-col items-center" href="#">
+          <Link href="#">
             <CartShopping />
           </Link>
           <RoundedUser />
@@ -138,17 +133,19 @@ const Header = () => {
       </div>
       <div
         className={`${
-          isFluentListOpen ? "max-h-96 opacity-100 px-2" : "max-h-0 opacity-0"
-        } transition-all duration-300 ease-in-out overflow-hidden xl:hidden`}
+          isFluentListOpen
+            ? "absolute z-50 bg-primary-100 left-0 w-full opacity-100 shadow-lg rounded-lg"
+            : "max-h-0 opacity-0"
+        } transition-all duration-500 ease-in-out overflow-hidden xl:hidden`}
       >
         {headerDetailList.map((item, index) => (
           <Link
             key={index}
             href={item.link}
-            className="flex gap-2 items-center"
+            className="flex justify-between items-center py-2 px-4 border-b-primary-700 border-b-2 hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
           >
             {item.name}
-            {item.icon && item.icon}
+            {item.icon && <span className="ml-2">{item.icon}</span>}
           </Link>
         ))}
       </div>
