@@ -1,6 +1,6 @@
 import { SVGAttributes } from "react";
 
-export function CartPlus(props: SVGAttributes<SVGSVGElement>) {
+export default function CartPlus(props: SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       width="25"

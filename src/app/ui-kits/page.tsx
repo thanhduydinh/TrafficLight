@@ -1,63 +1,67 @@
 "use client";
 
-import { CartPlus } from "@/assets/icons/CartPlus";
-import { Search } from "@/assets/icons/Search";
+import CartPlus from "@/assets/icons/CartPlus";
+import Search from "@/assets/icons/Search";
 import Input from "@/components/ui/Input";
 import { cn } from "@/config/utils";
 import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import { useState } from "react";
 import Pagination from "@/components/ui/Pagination";
+import Header from "../_components/Layouts/Header";
+import Footer from "../_components/Layouts/Footer";
 
 export default function UIKits() {
   const [selectedItem, setSelectedItem] = useState<string | number>("");
-  const [page,setPage] = useState(1);
+  const [page, setPage] = useState(1);
 
   const onPaginationChange = (currentPage: number) => {
     console.log(currentPage);
-    setPage(currentPage)
+    setPage(currentPage);
   };
 
   return (
-    <main className={cn("mx-10 mt-10 mb-20 space-y-4")}>
-      <h1>Buttons</h1>
-      <div className="space-x-2">
-        <Button
-          variant="outlined"
-          onClick={() => {
-            console.log("baodang");
-          }}
-        >
-          <CartPlus /> Outlined Button
-        </Button>
-        <Button disabled variant="outlined">
-          <CartPlus /> Disabled Outlined Button
-        </Button>
-        <Button>
-          <CartPlus /> Primary Button
-        </Button>
-        <Button disabled>
-          <CartPlus /> Disabled Primary Button
-        </Button>
-      </div>
+    <>
+      <Header />
+      <main className={cn("mx-10 mt-10 mb-20 space-y-4")}>
+        <h1>Buttons</h1>
+        <div className="space-x-2">
+          <Button
+            variant="outlined"
+            onClick={() => {
+              console.log("baodang");
+            }}
+          >
+            <CartPlus /> Outlined Button
+          </Button>
+          <Button disabled variant="outlined">
+            <CartPlus /> Disabled Outlined Button
+          </Button>
+          <Button>
+            <CartPlus /> Primary Button
+          </Button>
+          <Button disabled>
+            <CartPlus /> Disabled Primary Button
+          </Button>
+        </div>
 
-      <h1>Inputs</h1>
-      <Input
-        type="text"
-        placeholder="Outlined Input"
-        error="Sample error"
-        icon={<Search />}
-      />
-      <Input type="text" placeholder="Outlined Input" icon={<Search />} />
-      <Input type="text" disabled placeholder="Disabled Input" />
-      <Input
-        type="text"
-        variant={"standard"}
-        placeholder="Standard Input"
-        error="Sample error"
-        icon={<Search />}
-      />
-      <Input type="text" variant={"filled"} placeholder="Filled Input" />
+        <h1>Inputs</h1>
+        <Input
+          type="text"
+          placeholder="Outlined Input"
+          error="Sample error"
+          icon={<Search />}
+        />
+        <Input type="text" placeholder="Outlined Input" icon={<Search />} />
+        <Input type="text" disabled placeholder="Disabled Input" />
+        <Input
+          type="text"
+          variant={"standard"}
+          placeholder="Standard Input"
+          error="Sample error"
+          icon={<Search />}
+        />
+        <Input type="text" variant={"filled"} placeholder="Filled Input" />
 
       <h1>Dropdown</h1>
       <Dropdown
@@ -120,14 +124,15 @@ export default function UIKits() {
         ]}
       />
 
-      <h1>Pagination</h1>
-      <Pagination
-        total={200}
-        currentPage={page}
-        pageSize={10}
-        onPageChange={onPaginationChange}
-      />
-
-    </main>
+        <h1>Pagination</h1>
+        <Pagination
+          total={200}
+          currentPage={page}
+          pageSize={10}
+          onPageChange={onPaginationChange}
+        />
+      </main>
+      <Footer/>
+    </>
   );
 }
