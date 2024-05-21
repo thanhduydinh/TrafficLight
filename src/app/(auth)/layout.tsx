@@ -1,6 +1,6 @@
 "use client";
 
-export default function AuthLayout({
+function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -14,3 +14,5 @@ export default function AuthLayout({
     </div>
   );
 }
+
+export default AuthLayout;

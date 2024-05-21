@@ -6,11 +6,12 @@ import { cn } from "@/config/utils";
 import Input from "@/components/ui/Input";
 import { Eye } from "@/assets/icons/Eye";
 import { EyeInvisible } from "@/assets/icons/EyeInvisible";
+import ToggleButton from "@/components/ui/ToggleButton";
 import { Google } from "@/assets/icons/Google";
 import Button from "@/components/ui/Button";
 import { PATH } from "@/constants/paths";
 
-export default function Login() {
+function Login() {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isRememberAccount, setIsRememberAccount] = useState(false);
 
@@ -18,14 +19,10 @@ export default function Login() {
     console.log(e.target.value);
   };
 
-  const handleToggle = () => {
-    setIsRememberAccount(!isRememberAccount);
-  };
-
   return (
     <>
       <div className="text-dark-850 text-xl font-bold text-center">
-        Welcome to E-com
+        Chào mừng đến với E-com
       </div>
       <div className="text-dark-200 text-xm text-center my-2">Đăng nhập</div>
 
@@ -33,7 +30,7 @@ export default function Login() {
         <Input
           label="Email"
           type="text"
-          placeholder="Your email"
+          placeholder="Email"
           error="Vui lòng nhập email"
           onChange={handleChangeAccount}
         />
@@ -60,22 +57,12 @@ export default function Login() {
       </div>
 
       <div className="flex items-center mx-auto my-2">
-        <div className={cn(
-          'inline-block pointer-events-auto h-6 w-10 rounded-full p-1 ring-1 ring-inset transition duration-200 ease-in-out ring-black/20 hover:cursor-pointer',
-          { 'bg-primary-900': isRememberAccount, 'bg-[white]': !isRememberAccount }
-        )} onClick={handleToggle}>
-          <div className={cn(
-            'h-4 w-4 rounded-full bg-white shadow-sm ring-1 ring-slate-700/10 transition duration-200 ease-in-out',
-            { 'translate-x-4': isRememberAccount }
-          )}></div>
-        </div>
+        <ToggleButton onClick={setIsRememberAccount} backgroundColor="bg-primary-900"/>
         <span className={cn("text-sm ml-2", { 'text-primary-900': isRememberAccount, 'text-dark-400': !isRememberAccount })}>Lưu đăng nhập</span>
       </div>
 
       <div className="text-center mt-5 mx-auto flex flex-col">
-        <Button>
-          <span>Đăng nhập</span>
-        </Button>
+        <Button>Đăng nhập</Button>
 
         <div className="font-bold text-dark-200 text-sm py-5 relative">
           <span className="bg-white relative z-10 px-5">Hoặc</span>
@@ -95,7 +82,7 @@ export default function Login() {
 
         <span className="text-xs text-dark-400 mt-2">
           Bạn chưa có tài khoản?
-          <Link href={PATH.REGISTER} className="text-primary-900 font-bold">
+          <Link href={PATH.REGISTER} className="text-primary-900 font-bold ml-1">
             Đăng kí ngay
           </Link>
         </span>
@@ -103,3 +90,5 @@ export default function Login() {
     </>
   );
 }
+
+export default Login;
