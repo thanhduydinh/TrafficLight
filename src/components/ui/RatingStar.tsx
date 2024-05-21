@@ -1,6 +1,6 @@
 "use client";
 
-import { Star } from "@/assets/icons/Icon";
+import { Star } from "@/assets/icons/Index";
 
 type RatingStarProps = {
   rating?: number;

@@ -28,6 +28,7 @@ const config: Config = {
         400: "#939CAB",
         300: "#B9B9B9",
         200: "#D3CDC7",
+        100: "#ccc"
       },
       brown: {
         900: "#B4916C"
