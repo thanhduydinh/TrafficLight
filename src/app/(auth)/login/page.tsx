@@ -11,7 +11,7 @@ import { Google } from "@/assets/icons/Google";
 import Button from "@/components/ui/Button";
 import { PATH } from "@/constants/paths";
 
-function Login() {
+const Login = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isRememberAccount, setIsRememberAccount] = useState(false);
 
@@ -57,8 +57,15 @@ function Login() {
       </div>
 
       <div className="flex items-center mx-auto my-2">
-        <ToggleButton onClick={setIsRememberAccount} backgroundColor="bg-primary-900"/>
-        <span className={cn("text-sm ml-2", { 'text-primary-900': isRememberAccount, 'text-dark-400': !isRememberAccount })}>Lưu đăng nhập</span>
+        <ToggleButton
+          onClick={setIsRememberAccount}
+          defaultValue={true}
+        />
+        <span
+          className={cn("text-sm ml-2", isRememberAccount ? "text-primary-900" : "text-dark-400")}
+        >
+          Lưu đăng nhập
+        </span>
       </div>
 
       <div className="text-center mt-5 mx-auto flex flex-col">
@@ -71,24 +78,28 @@ function Login() {
 
         <Button className="bg-white w-full mx-auto hover:bg-white-900 mb-2 border border-dark-200">
           <Google />
-          <span className="w-[80%] text-dark-400">
-            Đăng nhập với Google
-          </span>
+          <span className="w-[80%] text-dark-400">Đăng nhập với Google</span>
         </Button>
 
-        <Link href={PATH.FORGET_PASSWORD} className="text-xs text-primary-900 font-bold mt-2">
+        <Link
+          href={PATH.FORGET_PASSWORD}
+          className="text-xs text-primary-900 font-bold mt-2"
+        >
           Quên mật khẩu?
         </Link>
 
         <span className="text-xs text-dark-400 mt-2">
           Bạn chưa có tài khoản?
-          <Link href={PATH.REGISTER} className="text-primary-900 font-bold ml-1">
+          <Link
+            href={PATH.REGISTER}
+            className="text-primary-900 font-bold ml-1"
+          >
             Đăng kí ngay
           </Link>
         </span>
       </div>
     </>
   );
-}
+};
 
 export default Login;

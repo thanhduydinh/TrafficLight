@@ -4,12 +4,12 @@ import { cn } from "@/config/utils";
 import { useState } from "react";
 
 interface ToggleButtonProps {
-  onClick: (isRememberAccount: boolean) => void;
-  backgroundColor: string;
+  onClick: (isToggle: boolean) => void;
+  defaultValue?: boolean;
 }
 
-const ToggleButton = ({ onClick, backgroundColor }: ToggleButtonProps) => {
-  const [isToggle, setIsToggle] = useState(false);
+const ToggleButton = ({ onClick, defaultValue = false }: ToggleButtonProps) => {
+  const [isToggle, setIsToggle] = useState(defaultValue);
 
   const handleToggle = () => {
     const newToggleState = !isToggle;
@@ -20,15 +20,15 @@ const ToggleButton = ({ onClick, backgroundColor }: ToggleButtonProps) => {
   return (
     <div
       className={cn(
-        'inline-block pointer-events-auto h-6 w-11 rounded-full p-1 ring-1 ring-inset transition duration-200 ease-in-out ring-black/20 hover:cursor-pointer',
-        isToggle ? backgroundColor : 'bg-[white]'
+        "inline-block pointer-events-auto h-6 w-11 rounded-full p-1 ring-1 ring-inset transition duration-200 ease-in-out ring-black/20 hover:cursor-pointer",
+        isToggle ? "bg-primary-900" : "bg-[white]"
       )}
       onClick={handleToggle}
     >
       <div
         className={cn(
-          'h-4 w-4 rounded-full bg-white shadow-sm ring-1 ring-slate-700/10 transition duration-200 ease-in-out',
-          isToggle ? 'translate-x-5' : 'translate-x-0'
+          "h-4 w-4 rounded-full bg-white shadow-sm ring-1 ring-slate-700/10 transition duration-200 ease-in-out",
+          isToggle ? "translate-x-5" : "translate-x-0"
         )}
       ></div>
     </div>
