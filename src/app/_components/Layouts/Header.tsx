@@ -1,7 +1,8 @@
-import React, { use } from "react";
-import { useEffect, useState } from "react";
+import React from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Input from "@/components/ui/Input";
+import { cn } from "@/config/utils";
 import {
   Envelope,
   Phone,
@@ -15,32 +16,32 @@ import {
   LogoFurniture,
 } from "@/assets/icons/";
 
+const headerDetailList = [
+  {
+    name: "Trang chủ",
+    link: "#",
+  },
+  {
+    name: "Sản phẩm",
+    link: "#",
+    icon: <DownAngle />,
+  },
+  {
+    name: "Tin tức",
+    link: "#",
+  },
+  {
+    name: "Vouncher",
+    link: "#",
+  },
+  {
+    name: "Combo tặng thưởng",
+    link: "#",
+  },
+];
+
 const Header = () => {
   const [isFluentListOpen, setIsFluentListOpen] = useState(false);
-  const headerDetailList = [
-    {
-      name: "Trang chủ",
-      link: "#",
-    },
-    {
-      name: "Sản phẩm",
-      link: "#",
-      icon: <DownAngle />,
-    },
-    {
-      name: "Tin tức",
-      link: "#",
-    },
-    {
-      name: "Vouncher",
-      link: "#",
-    },
-    {
-      name: "Combo tặng thưởng",
-      link: "#",
-    },
-  ];
-
   const handleFluentListOpen = () => {
     setIsFluentListOpen(!isFluentListOpen);
   };
@@ -132,11 +133,14 @@ const Header = () => {
         </div>
       </div>
       <div
-        className={`${
-          isFluentListOpen
-            ? "absolute z-50 bg-primary-100 left-0 w-full opacity-100 shadow-lg rounded-lg"
-            : "max-h-0 opacity-0"
-        } transition-all duration-500 ease-in-out overflow-hidden xl:hidden`}
+        className={cn(
+          "transition-all duration-500 ease-in-out overflow-hidden xl:hidden",
+          {
+            "absolute z-50 bg-primary-100 left-0 w-full opacity-100 shadow-lg rounded-lg":
+              isFluentListOpen,
+            "max-h-0 opacity-0": !isFluentListOpen,
+          }
+        )}
       >
         {headerDetailList.map((item, index) => (
           <Link
