@@ -1,6 +1,6 @@
 "use client";
 
-import { Star } from "@/assets/icons/Index";
+import { Star } from "@/assets/icons/index";
 
 type RatingStarProps = {
   rating?: number;
@@ -17,12 +17,17 @@ const RatingStar = ({ rating }: RatingStarProps) => {
         style={{ width: widthPercentage }}
       >
         {LIST.map((i) => (
-          <Star key={i} color="#F5CF05" />
+          <Star
+            key={i}
+            className="inline-block flex-shrink-0"
+            color="#F5CF05"
+          />
         ))}
       </span>
+      
       <span className="flex">
         {LIST.map((i) => (
-          <Star key={i} color="#ccc" />
+          <Star key={i} className="inline-block flex-shrink-0" color="#ccc" />
         ))}
       </span>
     </div>

@@ -3,12 +3,11 @@ import { SVGAttributes } from "react";
 export function Cart(props: SVGAttributes<SVGSVGElement>) {
   return (
     <svg
-      widths="20"
+      width="20"
       height="20"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 16 16"
       fill="none"
-      className="cursor-pointer"
       {...props}
     >
       <g clipPath="url(#clip0_1_13560)">

@@ -1,39 +1,46 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { cn } from "@/config/utils";
-import { Cart, Heart } from "@/assets/icons/Index";
+import { Cart, Heart } from "@/assets/icons/index";
 import RatingStar from "./RatingStar";
 import Image from "next/image";
 
-type ItemcardProps = {
+type ItemCardProps = {
   id?: number;
   imgUrl?: string;
   title?: string;
-  currentPrice?: string;
-  previousPrice?: string;
+  currentPrice?: number;
+  discount?: number;
   isFavourite?: boolean;
   rating?: number;
   disabled?: boolean;
   onClick?: (value: boolean | undefined, id: number) => void;
 };
 
-const Itemcard = ({
+const ItemCard = ({
   id = 0,
   imgUrl = "",
   title = "",
-  currentPrice = "",
-  previousPrice = "",
+  currentPrice = 0,
   isFavourite = false,
   rating = 0,
+  discount = 0,
   disabled = false,
   onClick,
-}: ItemcardProps) => {
+}: ItemCardProps) => {
   const [favorite, setFavorite] = useState(isFavourite);
   const toggleFavorite = () => {
     setFavorite(!favorite);
-    onClick && onClick(favorite, id);
+    onClick?.(favorite, id);
   };
+  const formatPrice = (price: number) => {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "đ";
+  };
+  const previousPrice =
+  discount > 0 && currentPrice
+  ? parseFloat((currentPrice / (1 - discount / 100)).toFixed(0))
+  : null;
 
   return (
     <div
@@ -50,6 +57,15 @@ const Itemcard = ({
             height={280}
             className={cn("w-full h-[280px] object-cover rounded-t-xl")}
           />
+        )}
+        {discount > 0 && (
+          <div
+            className={cn(
+              "absolute top-0 left-0 px-4 py-1 font-[Kanit] text-white bg-dark-500 rounded-tl-xl rounded-br-xl"
+            )}
+          >
+            -{discount}%
+          </div>
         )}
 
         <div
@@ -68,17 +84,19 @@ const Itemcard = ({
           <h3 className="flex-1 text-base text-gray-400 line-clamp-2 text-ellipsis">
             {title}
           </h3>
-          <Cart />
+          <Cart className="ml-5 cursor-pointer hover:opacity-80"/>
         </div>
 
         <div className={cn("flex justify-between items-center")}>
           <div className={cn("flex items-center")}>
             <p className="text-lg text-yellow-800 font-medium mr-3">
-              {currentPrice}
+              {formatPrice(currentPrice)}
             </p>
-            <p className="text-sm text-dark-300 font-normal line-through">
-              {previousPrice}
-            </p>
+            {previousPrice && (
+              <p className="text-sm text-dark-300 font-normal line-through">
+                {formatPrice(previousPrice)}
+              </p>
+            )}
           </div>
           <RatingStar rating={rating} />
         </div>
@@ -87,4 +105,4 @@ const Itemcard = ({
   );
 };
 
-export default Itemcard;
+export default ItemCard;

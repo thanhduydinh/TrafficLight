@@ -1,6 +1,6 @@
 import { SVGAttributes } from "react";
 
-export function Heart({ className, ...props }: SVGAttributes<SVGSVGElement>) {
+export function Heart(props: SVGAttributes<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,7 +8,6 @@ export function Heart({ className, ...props }: SVGAttributes<SVGSVGElement>) {
       height="15"
       viewBox="0 0 15 15"
       fill="currentColor"
-      className={className}
       {...props}
     >
       <path
