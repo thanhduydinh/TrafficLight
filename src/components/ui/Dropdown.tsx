@@ -1,6 +1,6 @@
 "use client";
 
-import  ChevronDown  from "@/assets/icons/ChevronDown";
+import ChevronDown from "@/assets/icons/ChevronDown";
 import { cn } from "@/config/utils";
 import useClickOutside from "@/hooks/useClickOutside";
 import { useState, useRef, useMemo, useEffect } from "react";
@@ -99,7 +99,7 @@ const Dropdown = <T extends DropdownValue>({
           {
             "px-2 py-0.5 rounded": size === "sm",
             "px-3.5 py-2.5 rounded-xl": size === "lg",
-            "text-dark-400 font-light": !selectedValue || disabled,
+            "text-dark-400": !selectedValue || disabled,
             "opacity-75 pointer-events-none": disabled,
           },
           className
@@ -114,7 +114,9 @@ const Dropdown = <T extends DropdownValue>({
           onChange={(e) => onChangeSearch(e.target.value)}
           className={cn(
             disabled || !isShowSearch ? "hidden" : "inline-block",
-            searchTerm ? "placeholder:text-dark-400" : "placeholder:text-dark",
+            selectedValue || (searchTerm && !selectedValue)
+              ? "placeholder:text-dark text-dark"
+              : "placeholder:text-dark-400",
             "w-full border-none outline-none focus:ring-0"
           )}
         />
