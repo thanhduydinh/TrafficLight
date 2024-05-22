@@ -1,20 +1,24 @@
 "use client";
 
 import { cn } from "@/config/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ToggleButtonProps {
-  onClick: (isToggle: boolean) => void;
-  defaultValue?: boolean;
+  onClick?: (isToggle: boolean) => void;
+  value?: boolean;
 }
 
-const ToggleButton = ({ onClick, defaultValue = false }: ToggleButtonProps) => {
-  const [isToggle, setIsToggle] = useState(defaultValue);
+const ToggleButton = ({ onClick, value = false }: ToggleButtonProps) => {
+  const [isToggle, setIsToggle] = useState(value);
+
+  useEffect(() => {
+    setIsToggle(value);
+  }, [value]);
 
   const handleToggle = () => {
-    const newToggleState = !isToggle;
-    setIsToggle(newToggleState);
-    onClick?.(newToggleState);
+    const newIsToggle = !isToggle;
+    setIsToggle(newIsToggle);
+    onClick?.(newIsToggle);
   };
 
   return (

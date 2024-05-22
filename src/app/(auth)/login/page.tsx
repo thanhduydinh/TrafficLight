@@ -59,7 +59,6 @@ const Login = () => {
       <div className="flex items-center mx-auto my-2">
         <ToggleButton
           onClick={setIsRememberAccount}
-          defaultValue={true}
         />
         <span
           className={cn("text-sm ml-2", isRememberAccount ? "text-primary-900" : "text-dark-400")}
