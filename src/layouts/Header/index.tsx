@@ -1,8 +1,6 @@
 import React from "react";
-import { useState } from "react";
 import Link from "next/link";
 import Input from "@/components/ui/Input";
-import { cn } from "@/config/utils";
 import {
   Envelope,
   Phone,
@@ -11,12 +9,12 @@ import {
   Favorite,
   CartShopping,
   DownAngle,
-  FluentList,
   RoundedUser,
   LogoFurniture,
 } from "@/assets/icons/";
+import HeaderNav from "./HeaderNav";
 
-const headerDetailList = [
+const menus = [
   {
     name: "Trang chủ",
     link: "#",
@@ -41,13 +39,8 @@ const headerDetailList = [
 ];
 
 const Header = () => {
-  const [isFluentListOpen, setIsFluentListOpen] = useState(false);
-  const handleFluentListOpen = () => {
-    setIsFluentListOpen(!isFluentListOpen);
-  };
-
   return (
-    <header>
+    <header className="fixed1 w-full">
       <div className="bg-primary-900 text-white py-4 top-0 z-10 xl:block hidden">
         <div className="flex justify-between items-center">
           <div className="w-4/5 mx-auto flex justify-between">
@@ -81,7 +74,7 @@ const Header = () => {
             <LogoFurniture />
           </Link>
           <div className="hidden gap-5 xl:flex">
-            {headerDetailList.map((item, index) => (
+            {menus.map((item, index) => (
               <Link
                 key={index}
                 href={item.link}
@@ -116,12 +109,7 @@ const Header = () => {
       </div>
 
       <div className="bg-white xl:hidden flex px-3 py-3 justify-between items-center">
-        <FluentList
-          onClick={() => {
-            handleFluentListOpen();
-          }}
-          className="cursor-pointer"
-        />
+        <HeaderNav menus={menus} />
         <Link href="#">
           <LogoFurniture />
         </Link>
@@ -131,27 +119,6 @@ const Header = () => {
           </Link>
           <RoundedUser />
         </div>
-      </div>
-      <div
-        className={cn(
-          "transition-all duration-500 ease-in-out overflow-hidden xl:hidden",
-          {
-            "absolute z-50 bg-primary-100 left-0 w-full opacity-100 shadow-lg rounded-lg":
-              isFluentListOpen,
-            "max-h-0 opacity-0": !isFluentListOpen,
-          }
-        )}
-      >
-        {headerDetailList.map((item, index) => (
-          <Link
-            key={index}
-            href={item.link}
-            className="flex justify-between items-center py-2 px-4 border-b-primary-700 border-b-2 hover:bg-primary hover:text-white transition-colors duration-300 ease-in-out"
-          >
-            {item.name}
-            {item.icon && <span className="ml-2">{item.icon}</span>}
-          </Link>
-        ))}
       </div>
     </header>
   );

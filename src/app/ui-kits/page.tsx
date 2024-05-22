@@ -8,8 +8,6 @@ import Button from "@/components/ui/Button";
 import Dropdown from "@/components/ui/Dropdown";
 import { useState } from "react";
 import Pagination from "@/components/ui/Pagination";
-import Header from "@/layout/Header";
-import Footer from "@/layout/Footer";
 
 export default function UIKits() {
   const [selectedItem, setSelectedItem] = useState("");
@@ -22,7 +20,6 @@ export default function UIKits() {
 
   return (
     <>
-      <Header />
       <main className={cn("mx-10 mt-10 mb-20 space-y-4")}>
         <h1>Buttons</h1>
         <div className="space-x-2">
@@ -132,7 +129,6 @@ export default function UIKits() {
           onPageChange={onPaginationChange}
         />
       </main>
-      <Footer />
     </>
   );
 }
