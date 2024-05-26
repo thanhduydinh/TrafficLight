@@ -30,6 +30,10 @@ const config: Config = {
         400: "#939CAB",
         300: "#B9B9B9",
         200: "#D3CDC7",
+        100: "#ccc"
+      },
+      brown: {
+        900: "#B4916C"
       },
       white: {
         DEFAULT: "#FFFFFF",
@@ -37,10 +41,13 @@ const config: Config = {
         800: "#F9F9F9",
         700: "#D9D9D9",
         200: "#EBEBEB",
+        100: "#f5f5f5"
       },
       yellow: {
         DEFAULT: "#F9A825",
         900: "#F5CF05",
+        800: "#B4916C",
+        700: "#F5CF05"
       },
       red: {
         DEFAULT: "#FC2B2B",
